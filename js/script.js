@@ -62,17 +62,17 @@ createApp({
         },
 
         buttonBack() {
-            this.slides[counter].show = true;
-            this.slides[counter].active = true;
+            this.slides[counter].show = false;
+            this.slides[counter].active = false;
 
-            if ((counter !== slides.length) && (counter !== 0)) {
+            if ((counter !== this.slides.length) && (counter !== 0)) {
                 counter --;
-                this.slides[counter].show = false;
-                this.slides[counter].active = false;
+                this.slides[counter].show = true;
+                this.slides[counter].active = true;
             } else { 
-               counter = slides.length -1;
-               this.slides[counter].show = false;
-               this.slides[counter].active = false;
+               counter = this.slides.length -1;
+               this.slides[counter].show = true;
+               this.slides[counter].active = true;
             }
         }
     }
