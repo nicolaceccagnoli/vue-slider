@@ -4,6 +4,8 @@ const {createApp } = Vue;
 createApp({
     data() {
         return {
+
+            // Definisco la Variabile contatore delle Slide che gestirà l'indice dell' "Array-slides"
             currentSlide : 0,
             slides : [
                 {
@@ -53,37 +55,50 @@ createApp({
                 this.slides[counter].active = true;
             }
             */
+
+
+            //Tolgo la classe active all'immagine della thumb attualmente attiva prima del cick
             this.slides[this.currentSlide].active = false;
 
+            // Creo una condizione per cui il Contatore delle Slide debba corrispondere alla lunghezza dell' "Array-slides"
             if (this.currentSlide < this.slides.length -1 ) {
                 this.currentSlide++;      
   
             } else {
                 this.currentSlide = 0;
             }
-
+            // Assegno la classe active all'immagine della thumb cliccata
             this.slides[this.currentSlide].active = true;
 
         },
 
+        // Dichiaro una funzione che controlli l'evento del click sul bottone Indietro
         buttonBack() {
+            //Tolgo la classe active all'immagine della thumb attualmente attiva prima del cick
             this.slides[this.currentSlide].active = false;
 
+            // Creo una condizione per cui il Contatore delle Slide debba corrispondere alla lunghezza dell' "Array-slides"
             if ((this.currentSlide !== this.slides.length) && (this.currentSlide !== 0)) {
                 this.currentSlide --;
             } else { 
                this.currentSlide = this.slides.length -1;
             }
-
+            // Assegno la classe active all'immagine della thumb cliccata
             this.slides[this.currentSlide].active = true;
         },
 
+        // Dichiaro una Funzione per cui al click su un'immagine della thumb poi compare sullo slider
         thumbShow(index) {
-            this.currentSlide.active = false;
 
+            //Tolgo la classe active all'immagine della thumb attualmente attiva prima del cick
+            this.slides[this.currentSlide].active = false;
+
+            // Faccio corrispondere il contatore delle Slide all'indice dell' "array" delle slide (usate per la  Thumbnails)
             this.currentSlide = index;
 
-            this.currentSlide.active = true;
+            // Assegno la classe active all'immagine della thumb cliccata
+            this.slides[this.currentSlide].active = true;
+            
         }
     }
 
