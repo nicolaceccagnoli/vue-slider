@@ -13,27 +13,24 @@
 
     <div id="app">
 
-        <div class="container">
+        <div class="container" id="app">
             <div class="slider-wrapper" tabindex="0">
 
-                <div class="item">
-                    <img src="img/01.webp" alt="Spiderman" />
+                <div class="item" :class="singleSlide.show == true ? 'show' : '' " v-for="(singleSlide, index) in slides">
+                    <img :src="singleSlide.image" :alt="singleSlide.title">
                     <div class="text">
-                        <h3>Spiderman</h3>
+                        <h3>{{singleSlide.title}}</h3>
                         <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit
-                            tempore aliquid deleniti aut
-                            veniam inventore eligendi ex ad ullam, cumque provident totam omnis, magnam dolores dolorum
-                            corporis.
+                            {{singleSlide.text}}
                         </p>
                     </div>
                 </div>
 
-                <div class="thumbs" id="app">
-                    <div class="prev"></div>
-                    <div class="next"></div>
-                    <div class="thumb active" v-for="(singleSlide, index) in slides">
-                        <img :src="singleSlide.image" alt="">
+                <div class="thumbs">
+                    <div class="prev" @click="buttonBack()"></div>
+                    <div class="next" @click="buttonForward()"></div>
+                    <div class="thumb" :class="singleSlide.active == true ? 'active' : '' " v-for="(singleSlide, index) in slides">
+                        <img :src="singleSlide.image" :alt="singleSlide.title">
                     </div>
                     <!-- <div class="thumb active">
                         <img src="img/01.webp" alt="Svezia" />
