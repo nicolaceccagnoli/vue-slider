@@ -16,7 +16,6 @@
     width: 700px;
     height: 300px;
     position: relative;
-    display: none;
 }
 
 .item img {
@@ -31,10 +30,6 @@
     bottom: 20px;
     text-align: right;
     color: white;
-}
-
-.item.show {
-    display: block;
 }
 
 .thumbs {

@@ -15,7 +15,7 @@
 
         <div class="container" id="app">
             <div class="slider-wrapper" tabindex="0">
-
+                <!--
                 <div class="item" :class="singleSlide.show == true ? 'show' : '' " v-for="(singleSlide, index) in slides">
                     <img :src="singleSlide.image" :alt="singleSlide.title">
                     <div class="text">
@@ -25,11 +25,20 @@
                         </p>
                     </div>
                 </div>
-
+                -->
+                <div class="item">
+                    <img :src="slides[currentSlide].image" :alt="slides[currentSlide].title">
+                    <div class="text">
+                        <h3>{{slides[currentSlide].title}}</h3>
+                        <p>
+                            {{slides[currentSlide].text}}
+                        </p>
+                    </div>
+                </div>
                 <div class="thumbs">
                     <div class="prev" @click="buttonBack()"></div>
                     <div class="next" @click="buttonForward()"></div>
-                    <div class="thumb" :class="singleSlide.active == true ? 'active' : '' " v-for="(singleSlide, index) in slides">
+                    <div class="thumb" @click="thumbShow(index)" :class="singleSlide.active == true ? 'active' : '' " v-for="(singleSlide, index) in slides">
                         <img :src="singleSlide.image" :alt="singleSlide.title">
                     </div>
                     <!-- <div class="thumb active">
