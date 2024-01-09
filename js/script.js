@@ -7,6 +7,7 @@ createApp({
 
             // Definisco la Variabile contatore delle Slide che gestirà l'indice dell' "Array-slides"
             currentSlide : 0,
+            carouselForward : true,
             slides : [
                 {
                         image: 'img/01.webp',
@@ -47,15 +48,13 @@ createApp({
 
             if (counter < this.slides.length -1 ) {
                 counter ++;
-                this.slides[counter].show = true;
-                this.slides[counter].active = true;
             } else {
                 counter = 0;
-                this.slides[counter].show = true;
-                this.slides[counter].active = true;
             }
-            */
 
+            this.slides[counter].show = true;
+            this.slides[counter].active = true;
+            */
 
             //Tolgo la classe active all'immagine della thumb attualmente attiva prima del cick
             this.slides[this.currentSlide].active = false;
@@ -78,7 +77,7 @@ createApp({
             this.slides[this.currentSlide].active = false;
 
             // Creo una condizione per cui il Contatore delle Slide debba corrispondere alla lunghezza dell' "Array-slides"
-            if ((this.currentSlide !== this.slides.length) && (this.currentSlide !== 0)) {
+            if (this.currentSlide > 0) {
                 this.currentSlide --;
             } else { 
                this.currentSlide = this.slides.length -1;
@@ -98,8 +97,10 @@ createApp({
 
             // Assegno la classe active all'immagine della thumb cliccata
             this.slides[this.currentSlide].active = true;
-            
-        }
+        }, 
+
+    }, mounted() {
+        setInterval(this.buttonForward, 3000)
     }
 
 }).mount('#app')
