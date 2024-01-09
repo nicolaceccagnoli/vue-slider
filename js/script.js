@@ -35,7 +35,10 @@ createApp({
                         text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
                         active : false,
                     }
-                ]
+                ],
+
+                // Inizializzo la variabile del SetInterval
+                autoplay: null
         }
     },
     methods: {
@@ -98,9 +101,28 @@ createApp({
             // Assegno la classe active all'immagine della thumb cliccata
             this.slides[this.currentSlide].active = true;
         }, 
+        // Creo le funzioni che mi controllino l'Hover del mouse sullo slider
+        handleMouseEnterOnSlider() {
+            console.log('Hover sullo slider')
 
+            // Stoppo l'Autoplay 
+            clearInterval(this.autoplay);
+            this.autoplay = null;
+        },
+        handleMouseLeaveOnSlider() {
+            console.log('Non sei più in hover')
+
+            // Faccio ripartire l'autoplay
+            this.autoplay = setInterval(this.buttonForward, 3000)
+
+        }
+
+        // Richiamo la "funzione" mounted che nel ciclo di vita mi identifica che l'istanza è stata montata e al suo interno inizializzo la funzione del setInterval che mi faccia scorrere lo Slider a intervalli di 3 secondi
     }, mounted() {
-        setInterval(this.buttonForward, 3000)
+
+        // Salvo il setInterval in una variabile che inizializzo nei data per far si che le altre istanze di vue possano visualizzarla
+
+        this.autoplay = setInterval(this.buttonForward, 3000)
     }
 
 }).mount('#app')
